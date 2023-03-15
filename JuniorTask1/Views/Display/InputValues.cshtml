@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewData["Title"] = "Ввод массива";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Заполните массив</title>
+    <script type="text/javascript">
+        document.body.onload = RandomizeFirst;
+
+        function GetRandomInt(max) {
+            return Math.floor(Math.random() * max);
+        }
+        function RandomizeFirst() {
+            var s = document.getElementById("firstnum");
+            s.value = GetRandomInt(101)-50;
+        }
+        function GetDynamicTextbox(val) {
+            return '<div><input type="number" name="num" style="width:200px;  margin: 15px" value = ' + val + ' /><input type="button" class="btn btn-outline-danger" onclick="RemoveTextBox(this)" value="Удалить" /></div>';
+        }
+        function AddTextBox() {
+            var div = document.createElement('DIV');
+            div.innerHTML = GetDynamicTextbox(GetRandomInt(101)-50)
+            document.getElementById("divCont").appendChild(div);
+        }
+        function RemoveTextBox(div) {
+            document.getElementById("divCont").removeChild(div.parentNode.parentNode);
+        }
+    </script>
+</head>
+<body>
+    <h1 class="fs-1">Заполнение массива</h1>
+    <div>Заполните массив. Чтобы добавить элементы, нажмите на зеленую кнопку "Добавить". 
+        Чтобы удалить строку, нажмите на красную кнопку "Удалить" напротив необходимой строки.
+        Когда массив будет заполнен, нажмите на кнопку "Рассчитать"</div>
+    <div>
+        <form method="post">
+            <div id="divCont">
+                <div><input type="number" id="firstnum" name="num" style="width:200px; margin: 15px" value="getRandomInt(100)" /> <input type="button" class="btn btn-outline-success" onclick="AddTextBox()" value="Добавить" /></div>
+            </div><br />
+            <input type="submit" class="btn btn-primary" style="margin: 15px" value="Рассчитать" />
+        </form>
+    </div>
+</body>
+</html>
